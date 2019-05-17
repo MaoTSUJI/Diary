@@ -11,6 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+//get('URLリクエスト','対象コントローラー＠対象メソッド')を呼び出す
+//->name('名前')はなくても使える
+Route::get('/', 'DiaryController@index')->name('diary.index'); //追加
+Route::get('/diary/create', 'DiaryController@create')->name('diary.create');
+	 //追加
+// オブジェクト指向のクラスメソッド
+// クラス名::メソッド
+// オブジェクト->メソッド
+// Car::start();
