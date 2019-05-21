@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>@yield('tittle')</title>
+	<link rel="stylesheet" type="text/css" href="/css/app.css">
+</head>
+<body>
+	ヘッダー
+	@yield('content')
+
+	フッター
+</body>
+</html>
