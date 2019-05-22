@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+//
 
 use Illuminate\Http\Request;
 // require_once('別のファイル');のイケてる版
 //$_POSTを受け取るクラス
 
 use App\Diary;  //Diaryのクラスを使えるようにする
+use App\Http\Requests\CreateDiary; //バリデーションのCreateDiaryクラスを使う
 
 class DiaryController extends Controller
 {
@@ -41,7 +43,7 @@ class DiaryController extends Controller
     	return view('diaries.create');
     }
     //保存処理
-    public function store(Request $request){
+    public function store(CreateDiary $request){    //
         // dd('ほげ');
         //POST 送信データの受け取り
         //$_POSTの代わりにRequestクラスを使用します。
@@ -59,6 +61,11 @@ class DiaryController extends Controller
         return redirect()->route('diary.index'); //header()と同じような処理
 
     }
+
+    public function destroy($id){   //web.phpの'diary/{id}/deleteにある{id}と同名の引数が定義される'
+        dd($id);
+    }
+
 
 }
 
