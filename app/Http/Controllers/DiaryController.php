@@ -62,8 +62,18 @@ class DiaryController extends Controller
 
     }
 
+    //リクエスト -> http://localhost
+    // web.php->Route
     public function destroy($id){   //web.phpの'diary/{id}/deleteにある{id}と同名の引数が定義される'
-        dd($id);
+        // dd($id);
+
+        $diary = Diary::find($id);
+        // SELECT * FROM diaries WHERE id=?
+        $diary->delete();
+        // DELETE FROM テーブル名 WHERE id=? (←SQL文の場合)
+
+        return redirect()->route('diary.index');
+
     }
 
 

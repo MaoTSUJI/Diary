@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDiariesTable extends Migration
+class AddUserIdToDiaries extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateDiariesTable extends Migration
      */
     public function up()
     {
-        Schema::create('diaries', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('title', 30); //追加
-            $table->text('body'); //追加
-            $table->timestamps();
+        Schema::table('diaries', function (Blueprint $table) {
+            $table->integer("user_id");
         });
     }
 
@@ -28,6 +25,9 @@ class CreateDiariesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('diaries');
+        Schema::table('diaries', function (Blueprint $table) {
+            //ここにプログラムを追加する
+            $table->dropColumn('user_id');
+        });
     }
 }
