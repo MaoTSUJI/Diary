@@ -11,6 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
+        //このファイルを読み込むと、下のコマンドが実行される
+        //php artisan db:seed --class=UsersTableSeeder
+		    $this->call(DiariesTableSeeder::class);
+		    //php artisan db:seed --class=DiariesTableSeeder
+
     }
 }

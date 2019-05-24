@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use App\Diary;  //Diaryのクラスを使えるようにする
 use App\Http\Requests\CreateDiary; //バリデーションのCreateDiaryクラスを使う
 
+use Illuminate\Support\Facades\Auth;
+//Authクラスを使えるようにする
+
 class DiaryController extends Controller
 {
     //一覧画面を表示する
@@ -55,6 +58,8 @@ class DiaryController extends Controller
         $diary = new Diary(); //インスタンス化
         $diary->title = $request->title;
         $diary->body = $request->body;
+        $diary->user_id = Auth::user()->id; //ログインしているユーザーのidを保存
+        // dd(Auth::user()->id);
         $diary->save();
 
         //一覧ページに戻る（リダイレクト処理）
