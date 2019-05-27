@@ -27,6 +27,9 @@ Route::group(['middleware'=>'auth'], function(){
 	Route::delete('diary/{id}/delete', 'DiaryController@destroy')->name('diary.destroy');	//削除処理
 	//{}は対応するメソッドの引数になる
 
+	Route::get('diary/{id}/edit', 'DiaryController@edit')->name('diary.edit'); // 編集画面
+	Route::put('diary/{id}/update', 'DiaryController@update')->name('diary.update'); //更新処理
+
 });
 
 

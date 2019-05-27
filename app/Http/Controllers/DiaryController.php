@@ -81,6 +81,24 @@ class DiaryController extends Controller
 
     }
 
+    function edit($id){
+        $diary = Diary::find($id);
+        // SELECT * FROM diaries WHERE id=?
+        // $diaryはCollectinという型でできていて、Arrayに変換するにはtoArray()
+        return view('diaries.edit', ['diary' => $diary]);
+    }
+
+    //更新処理
+    function update($id, CreateDiary $request) {
+        $diary = Diary::find($id); //1件データ取得
+
+        $diary->title = $request->title; //値を上書き
+        $diary->body = $request->body; //値を上書き
+        $diary->save(); //保存処理
+
+        return redirect()->route('diary.index');
+
+    }
 
 }
 

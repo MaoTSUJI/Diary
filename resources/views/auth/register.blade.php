@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout')
 
 @section('content')
 <div class="container">
@@ -16,6 +16,7 @@
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                {{-- autofocus 自動で入力の焦点を当ててくれてる --}}
 
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
