@@ -19,6 +19,7 @@
         {{ Auth::user()->name }}
     @endguest
 
+    {{-- navバーを表示 --}}
 	<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -47,6 +48,15 @@
                                 </li>
                             @endif
                         @else
+                            {{-- mypageに遷移するリンクを設置 --}}
+                            <li class="nav-item">
+                                 <a class="nav-link" href="/mypage">My Page</a>
+                            </li>
+
+                            <li class="nav-item">
+                                 <a class="nav-link" href="/userlist">User list</a>
+                            </li>
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -64,7 +74,7 @@
                                     </form>
                                 </div>
                             </li>
-                        @endguest
+                                                    @endguest
                     </ul>
                 </div>
             </div>

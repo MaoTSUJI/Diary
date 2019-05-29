@@ -24,7 +24,7 @@ class DiaryController extends Controller
     	// Laravel開発の必須ツールです
 
         //モデルファイルを使ってデータを取得する
-        $diaries = Diary::all()->toArray();
+        $diaries = Diary::with('likes')->orderBy('id', 'desc')->get();
         //SELECT * FROM diaries WHERE 1 を実行し$diariesに入れる
         //all()メソッドは対応するテーブルから、全てのセレクト
         // dd($diaries);
@@ -95,6 +95,37 @@ class DiaryController extends Controller
         $diary->title = $request->title; //値を上書き
         $diary->body = $request->body; //値を上書き
         $diary->save(); //保存処理
+
+        return redirect()->route('diary.index');
+
+    }
+
+    function mypage(){
+        // $login_user = Auth::user();
+        // // $diaries = Diary::find(1);
+        // //↑これやと SELECT * FROM diaries WHERE id=1;
+        // $diaries = Diary::where('user_id', 1)->get();
+        // where('カラム名', 値);
+        // SELECT * FROM diaries WHERE カラム名=値
+
+        //Modelのリレーションを使ったパターン
+        $login_user = Auth::user(); //ユーザー情報を取得
+        // dd($login_user);
+        // $diaries = $login_user->diaries;
+        // $users = $login_user->users;
+        // dd($login_user['password']);
+
+        return view('diaries.mypage', ['users'=>$login_user]);
+    }
+
+    function like($id){
+        // idをもとにdiaryデータ1件を取得
+        $diary = Diary::where('id', $id)->with('likes')->first();
+        // dd($diary);
+        //with() 
+        // likesテーブルに選択されているsiaryとログインしているユーザーのidをINSERTする
+        $diary->likes()->attach(Auth::user()->id);
+        // INSERT INTO likes (diary_id, user_id) VALUES($diary->id,  Auth::user()->id)
 
         return redirect()->route('diary.index');
 

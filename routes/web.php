@@ -19,7 +19,7 @@
 //->name('名前')はなくても使える
 Route::get('/', 'DiaryController@index')->name('diary.index');
 
-Route::group(['middleware'=>'auth'], function(){
+Route::group(['middleware'=>'auth'], function(){	//ログインした状態じゃないと入れない
 	
 	Route::get('diary/create', 'DiaryController@create')->name('diary.create');	//投稿画面
 	 //追加
@@ -29,6 +29,13 @@ Route::group(['middleware'=>'auth'], function(){
 
 	Route::get('diary/{id}/edit', 'DiaryController@edit')->name('diary.edit'); // 編集画面
 	Route::put('diary/{id}/update', 'DiaryController@update')->name('diary.update'); //更新処理
+
+	Route::get('/mypage', 'DiaryController@mypage')->name('diary.mypage');	//マイページメソッドを実行する
+
+	Route::get('/userlist', 'UserController@userlist')->name('diary.userlist');	//マイページメソッドを実行する
+
+	Route::post('diary/{id}/like', 'DiaryController@like')->name('diary.like');
+  Route::post('diary/{id}/dislike', 'DiaryController@dislike')->name('diary.dislike');
 
 });
 

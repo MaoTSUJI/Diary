@@ -21,6 +21,17 @@ Diary一覧
 			    <button class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
 				</form>
 			@endif
+			{{-- いいね機能まわりの表示 --}}
+			<div class="mt-3 ml-3">
+				<form class="form-inline" method="post" action="{{ route('diary.like', ['id'=> $diary['id']]) }}">
+					@csrf
+					<button type="submit" class="btn btn-outline-primary">
+						<i class="fas fa-thumbs-up"></i>
+						<span>{{ $diary->likes->count() }}</span>
+					</button>
+				</form>
+			</div>
+
 		</div>
 	@endforeach
 @endsection
