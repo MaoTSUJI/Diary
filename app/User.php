@@ -15,8 +15,9 @@ class User extends Authenticatable
      *
      * @var array
      */
+    // ホワイトリスト
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'age'
     ];
 
     /**
